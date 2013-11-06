@@ -1,0 +1,45 @@
+$border-radius: 8px 8px 0 0;
+$border-color: #FFFFFF;
+
+table.easy-table {
+  background-color: white;
+  border: 1px solid #CDC9C1;
+  border-radius: $border-radius;
+  line-height: 19px;
+  width: 100%;
+  thead {
+    color: #3C3B4E;
+    font-size: 15px;
+    line-height: 23px;
+    tr {
+      border-radius: $border-radius;
+      th {
+        background-color: #D8D4CC;
+        border-left: 1px solid $border-color;
+        padding: 4px;
+      }
+      th:first-child {
+        border-radius: 5px 0 0;
+      }
+      th:last-child {
+        border-radius: 0 5px 0 0;
+      }
+    }
+  }
+  tbody {
+    color: #5A5A5A;
+    tr {
+      border-bottom: 1px solid #F0EBE2;
+      td {
+        border-left: 1px solid $border-color;
+        padding: 4px;
+      }
+    }
+    tr:nth-child(2n+1) {
+      background-color: #F5F5F5;
+    }
+    tr:hover {
+      background: #DDD9D0;
+    }
+  }
+}
