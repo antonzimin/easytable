@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["anton@active-bridge.com"]
   spec.description   = %q{adds helper methods to generate simple table}
   spec.summary       = %q{adds helper methods to generate simple table}
-  spec.homepage      = "https://github.com/antonzimin/simpletable"
+  spec.homepage      = "https://github.com/antonzimin/easytable"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
