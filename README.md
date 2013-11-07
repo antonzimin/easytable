@@ -21,15 +21,19 @@ If you too lazy to work with content tags or you hate a lot of html in your view
     
 or
 
-    render_table_for(table_header: ['First name', 'Last name'], columns: @columns)
+    render_table_for(header: ['First name', 'Last name'], columns: @columns)
     
 or
 
-    render_table_for(table_header: [:id, :email], columns: User.last(10))
+    render_table_for(header: [:id, :email], columns: User.last(10))
+
+or
+
+    render_table_for(User.last(10))
     
 Also you can specify table class name and id, using <code>class</code> and <code>id</code>:
 
-    render_table_for(table_header: [], columns: [], class: 'custom-class', id: 'table_id')
+    render_table_for(header: [], columns: [], class: 'custom-class', id: 'table_id')
 
 default class name is <code>easy-table</code>
 

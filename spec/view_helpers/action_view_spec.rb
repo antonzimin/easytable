@@ -9,7 +9,7 @@ describe Easytable::ActionView do
 
     let(:header) { [] }
     let(:columns) { [] }
-    subject { render_table_for(table_header: header, columns: columns) }
+    subject { render_table_for(header: header, columns: columns) }
 
     it 'should render table tag' do
       expect(subject).to include('table', '/table')
@@ -27,7 +27,7 @@ describe Easytable::ActionView do
   describe 'Table with header' do
     let(:header) { ['Title', 'Description'] }
     let(:columns) { [] }
-    subject { render_table_for(table_header: header, columns: columns) }
+    subject { render_table_for(header: header, columns: columns) }
 
     it 'should render header data' do
       expect(subject).to include('<thead><tr><th>Title</th><th>Description</th></tr></thead>')
@@ -37,7 +37,7 @@ describe Easytable::ActionView do
   describe 'Table with columns' do
     let(:header) { [] }
     let(:columns) { [[1, 'first line'], [2, 'second line']] }
-    subject { render_table_for(table_header: header, columns: columns) }
+    subject { render_table_for(header: header, columns: columns) }
 
     it 'should render columns data' do
       expect(subject).to include('<tbody><tr><td>1</td><td>first line</td></tr><tr><td>2</td><td>second line</td></tr></tbody>')

@@ -3,14 +3,11 @@ require 'easytable/view_helpers'
 module Easytable
   module ActionView
 
-    def render_table_for(table_header: [], columns: [], **opts)
-      if columns.is_a?(ActiveRecord::Relation)
-        columns = columns.map { |record| record.to_array_by_keys(table_header) }
-        table_header = table_header.map!(&:to_s).map!(&:humanize)
-      end
+    def render_table_for(header: [], columns: [], **opts)
+      header, columns = modify_data_for(header, columns) if columns.is_a?(ActiveRecord::Relation)
       table_class = opts[:class] || :'easy-table'
       content_tag(:table, id: opts[:id], class: table_class) {
-        thead(table_header).concat(tbody(columns))
+        thead(header).concat(tbody(columns))
       }
     end
 
@@ -18,10 +15,23 @@ module Easytable
 
     private
 
-    def thead(table_header)
+    def modify_data_for(header, columns)
+      table_header = valid_header_keys(header: header, record: columns.first)
+      columns = columns.map { |record| record.to_array_by_keys(table_header) }
+      table_header.map!(&:humanize)
+      [table_header, columns]
+    end
+
+    def valid_header_keys(header: [], record: nil)
+      record_keys = record.respond_to?(:attributes) ? record.attributes.keys : header
+      valid_keys = header.map { |key| key.to_s.downcase } & record_keys
+      valid_keys.any? ? valid_keys : record_keys
+    end
+
+    def thead(header)
       content_tag :thead do
         content_tag :tr do
-          table_header.collect { |title| concat content_tag(:th, title) }.join()
+          header.collect { |title| concat content_tag(:th, title) }.join()
         end
       end
     end
