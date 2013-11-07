@@ -29,7 +29,7 @@ or
 
 or
 
-    render_table_for(User.last(10))
+    render_table_for(columns: User.last(10))
     
 Also you can specify table class name and id, using <code>class</code> and <code>id</code>:
 
